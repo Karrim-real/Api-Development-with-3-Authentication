@@ -1,0 +1,107 @@
+     <tbody>
+                                        @forelse ($appointments as $appointment)
+                                            <tr>
+                                                <td>#{{ $appointment->id }}</td>
+                                                <td>{{ $appointment->Company->name }}</td>
+                                                <td>{{ $appointment->Location->name }}</td>
+                                                <td>{{ $appointment->salutation == null || '' ? 'Nill' : $appointment->salutation }}</td>
+                                                <td>{{ $appointment->firstname == null || '' ? 'Nill' : $appointment->firstname}}</td>
+                                                <td>{{ $appointment->lastname == null || '' ? 'Nill' : $appointment->lastname }}</td>
+                                                <td>{{ $appointment->middlename == null || '' ? 'Nill' :$appointment->middlename }}</td>
+                                                <td>{{ $appointment->email }}</td>
+                                                <td>{{ $appointment->phone }}</td>
+                                                <td>{{ $appointment->city == null || '' ? 'Nill' : $appointment->city }}</td>
+                                                <td>{{ $appointment->levelreferrer == null || '' ? 'Nill' : $appointment->levelreferrer }}</td>
+                                                <td>{{ $appointment->marital_status == null || '' ? 'Nill' : $appointment->marital_status }}</td>
+                                                <td>{{ $appointment->vaccination_status == null || '' ? 'Nill' : $appointment->vaccination_status }}</td>
+                                                <td>{{ $appointment->assessment_status == null || '' ? 'Nill' : $appointment->assessment_status }}</td>
+                                                <td>{{ $appointment->interview_mode == null || '' ? 'Nill' : $appointment->interview_mode }}</td>
+                                                <td>{{ $appointment->appointment_date }}</td>
+                                                <td>{{ $appointment->recruiters->name }}</td>
+                                                <td>
+                                                    @if ($appointment->status == 1)
+                                                        <span class="badge bg-success">Yes</span>
+                                                    @else
+                                                        <span class="badge bg-warning">No</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $appointment->profile == 'other' ? $appointment->other_profile : ($appointment->profile == '' ? 'Nill' : $appointment->profile) }}</td>
+                                                <td>{{ $appointment->viber_number == null || '' ? 'Nill' : $appointment->viber_number }}</td>
+                                                <td>{{ $appointment->date_birth == null || '' ? 'Nill' : $appointment->date_birth }}</td>
+                                                <td>{{ $appointment->callcenter == null || '' ? 'Nill' : $appointment->callcenter }}</td>
+                                                <td>{{ $appointment->walkin_address == null || '' ? 'Nill' : $appointment->walkin_address }}</td>
+                                                <td>{{ $appointment->preffered_location == null || '' ? 'Nill' : $appointment->preffered_location }}</td>
+                                                <td>{{ $appointment->sales_exp == null || '' ? 'Nill' : $appointment->sales_exp }}</td>
+                                                <td>{{ $appointment->technical_exp == null || '' ? 'Nill' : $appointment->technical_exp }}</td>
+                                                <td>{{ $appointment->travel_account_exp == null || '' ? 'Nill' : $appointment->travel_account_exp }}</td>
+                                                <td>{{ $appointment->year_of_exp == null || '' ? 'Nill' : $appointment->year_of_exp }}</td>
+                                                <td>{{ $appointment->customer_Service_exp == null || '' ? 'Nill' : $appointment->customer_Service_exp }}</td>
+                                                <td>{{ $appointment->school == null || '' ? 'Nill' : $appointment->school }}</td>
+                                                <td>{{ $appointment->course_study == null || '' ? 'Nill' : $appointment->course_study }}</td>
+                                                <td>{{ $appointment->education_id == null || '' ? 'Nill' : $appointment->educations->name }}</td>
+                                                <td>{{ $appointment->qualification_id == null || '' ? 'Nill' : $appointment->qualifications->name }}</td>
+                                                <td>{{ $appointment->currentresidence_adds == null || '' ? 'Nill' : $appointment->currentresidence_adds }}</td>
+                                                <td>{{ $appointment->currentresidence_bara == null || '' ? 'Nill' : $appointment->currentresidence_bara }}</td>
+                                                <td>{{ $appointment->currentresidence_city == null || '' ? 'Nill' : $appointment->currentresidence_city }}</td>
+                                                <td>{{ $appointment->currentresidence_zipcode == null || '' ? 'Nill' : $appointment->currentresidence_zipcode }}</td>
+                                                <td>{{ $appointment->site == null || '' ? 'Nill' : $appointment->site }}</td>
+                                                <td>{{ $appointment->preffered_account == null || '' ? 'Nill' : $appointment->preffered_account }}</td>
+                                                <td>{{ $appointment->account_experience == null || '' ? 'Nill' : $appointment->account_experience }}</td>
+                                                <td>{{ $appointment->country == null || '' ? 'Nill' : $appointment->country }}</td>
+                                                <td>
+                                                    @if ($appointment->resume == null || '' )
+                                                        Nill
+                                                    @else
+                                                        <a href="{{config('app.url')}}/{{$appointment->resume}}" target="_blank">{{config('app.url')}}/{{$appointment->resume}}</a>
+                                                    @endif
+                                                </td>
+
+                                                {{-- <td>{{$appointment->updated_at->format('d.m.Y')}}</td> --}}
+                                                <td>
+                                                    @if ($appointment->appoint_status == 1)
+                                                        <span class="badge bg-warning">Line-Up</span>
+                                                    @elseif ($appointment->appoint_status == 2)
+                                                        <span class="badge bg-info">Select</span>
+                                                    @elseif ($appointment->appoint_status == 3)
+                                                        <span class="badge bg-success">Joined</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Rejected</span>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    <div class="dropdown d-inline-block">
+                                                        <button class="btn btn-soft-secondary btn-sm dropdown"
+                                                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="ri-more-fill align-middle"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            <li><a href="{{ route('appointment.show', $appointment->id) }}"
+                                                                    class="dropdown-item"><i
+                                                                        class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                                    View</a></li>
+                                                            <li><a class="dropdown-item edit-item-btn"
+                                                                    href="{{ route('appointment.edit', $appointment->id) }}"><i
+                                                                        class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                                    Edit</a></li>
+                                                            <li>
+                                                                <a class="dropdown-item remove-item-btn"
+                                                                    href="{{ route('delete-appointment', $appointment->id) }}">
+                                                                    <i
+                                                                        class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                    Delete
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        @empty
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>No Data available for Recruiter</strong> <a
+                                                    href="{{ route('appointment.create') }}" type="button"
+                                                    class="btn btn-primary btn-sm">Add Appointment</a>
+                                            </div>
+                                        @endforelse
+                                    </tbody>
