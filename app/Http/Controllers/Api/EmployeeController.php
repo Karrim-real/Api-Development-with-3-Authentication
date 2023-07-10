@@ -139,7 +139,7 @@ class EmployeeController extends Controller
         }
         return response()->json([
             'status' => 0,
-            'message' => 'An error occured while performing this operation, try again'
+            'message' => 'An error occurred while performing this operation, try again'
         ], 404);
     }
 }
