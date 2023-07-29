@@ -18,6 +18,15 @@ interface UserAuthInterface
      * @return void
      */
     public function login(array $userData);
+
+    /**
+     * UserByEmail
+     *
+     * @param  mixed $email
+     * @return void
+     */
+    public function UserByEmail($email);
+
     /**
      * logout
      *

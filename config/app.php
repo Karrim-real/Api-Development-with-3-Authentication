@@ -54,6 +54,7 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
+    'token_key' => env('TOKEN_KEY'),
 
     'url' => env('APP_URL', 'http://localhost'),
 
@@ -166,6 +167,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EmployeeServiceProvider::class,
+        App\Providers\ProjectServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,

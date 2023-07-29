@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\UserAuthInterface;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserAuthService implements UserAuthInterface
 {
@@ -44,7 +45,20 @@ class UserAuthService implements UserAuthInterface
      */
     public function login(array $userData)
     {
-        return $this->userAuthModel::attempt($userData);
+        return Auth::attempt($userData);
+    }
+
+    public function UserByEmail($email)
+    {
+        return $this->userAuthModel::where('email', $email)->exists();
+
+    }
+
+    public function userInfo($userId)
+    {
+
+        return $this->userAuthModel::where('id', $userId)->first();
+
     }
 
     /**

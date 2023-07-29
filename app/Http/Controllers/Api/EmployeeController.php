@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Services\EmployeeService;
 use Illuminate\Support\Str;
@@ -18,6 +17,8 @@ class EmployeeController extends Controller
     public function __construct(EmployeeService $employeeService ) {
         $this->employeeService = $employeeService;
     }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -111,14 +112,14 @@ class EmployeeController extends Controller
             if ($this->employeeService->updateEmployee($employee, $data)) {
                 return response()->json([
                     'status' => 1,
-                    'message' => 'Employee Found',
+                    'message' => 'Employee Data Updated',
                     'data' => $this->employeeService->Employee($employee)
                 ], 200);
             }
             return response()->json([
                 'status' => 0,
                 'message' => 'An error occurred when update employee information, Please check and try again'
-            ], 404);
+            ], 501);
         }
         return response()->json([
             'status' => 0,
@@ -128,6 +129,7 @@ class EmployeeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      */
     public function destroy(string $employee)
     {

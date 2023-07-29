@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\UserAuthController;
 use App\Http\Controllers\Api\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function(){
     Route::apiResource('employee', EmployeeController::class);
+
+    Route::controller(UserAuthController::class)->group(function(){
+
+        Route::prefix('auth')->group(function(){
+            Route::post('register', 'Register');
+            Route::post('login', 'Login');
+        });
+
+        // Route::group(["middleware" => ["auth:sanctum"]], function(){
+
+            Route::middleware(['auth:sanctum'])->group(function(){
+
+                Route::prefix('user')->group(function(){
+                    Route::get('profile', 'Profile');
+                    Route::put('profile', 'Profile');
+                    Route::post('refresh-token', 'RefreshToken');
+                    Route::get('logout', 'Logout');
+                });
+            });
+
+
+        // });
+
+
+    });
+
 });
