@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\UserAuthController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +37,13 @@ Route::prefix('v1')->group(function(){
 
                 Route::prefix('user')->group(function(){
                     Route::get('profile', 'Profile');
-                    Route::put('profile', 'Profile');
+                    Route::put('profile', 'UpdateProfile');
                     Route::post('refresh-token', 'RefreshToken');
                     Route::get('logout', 'Logout');
                 });
+
+                    Route::apiResource('project', ProjectController::class);
+
             });
 
 

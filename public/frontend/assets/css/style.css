@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: poppins, sans-serif;
+
+}
+
+
+
+
+
+.containthis{
+  
+    height: 100vh;
+    background: linear-gradient(550deg, rgb(140, 242, 255), rgb(9, 36, 42));
+    padding:40px;
+    background-size: cover;
+   background-position: center;
+}
+
+form h4{
+ text-align: center;
+ color:  rgb(4, 95, 115);
+ 
+}
+
+
+.giftcard-homepage,.transaction_successful{
+    margin:0px auto 30px ;
+    background: white;
+    border-radius: 10px;
+    position: relative;
+padding: 20px  ;
+border-bottom: 50px;
+
+}
+
+
+form{
+    padding: 40px ;
+    display: block;
+    width: 100%;
+}
+#update{
+    font-size: 12px;
+    color: rgb(193, 83, 83);
+    text-align: center;
+}
+.title{
+    color:  rgb(4, 95, 115);
+    font-size: 13px ;
+}
+#enterPin{
+    font-size: 12px;
+    color: rgb(77, 75, 75);
+}
+
+.withdraw-btn{
+    position: absolute;
+    background:  rgb(4, 95, 115);
+    right: 50px;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.withdraw-btn:hover{
+    background:  rgb(2, 28, 34);
+}
+
+.reachUs{
+    font-size: 12px;
+    margin-top: 50px;
+    color:  rgb(27, 28, 28);
+    
+    
+}
+
+.spanhone{
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+/* BANK HOMEPAGE */
+
+.transaction_successful{
+    max-height: 500px;
+}
+
+.second-in{
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: center;
+}
+.second-in h1{
+    color:  rgb(7, 63, 76);
+    
+}
+.home-btn{
+    background:  rgb(4, 95, 115);
+    color:white;
+    border: none;
+}
+.home-btn:hover{
+    background:  rgb(2, 28, 34);
+}
+
+
+/* LOGIN PAGE */

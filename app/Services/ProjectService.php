@@ -51,12 +51,47 @@ class ProjectService implements ProjectInterface
      * Project
      *
      * @param  mixed $projectId
-     * @return void
+     * @return object
      */
     public function Project($projectId)
     {
 
     return $this->projectModel::findOrFail($projectId);
+
+    }
+
+    /**
+     * ProjectByUser
+     *
+     * @param  mixed $userId
+     * @param  mixed $projectId
+     * @return void
+     */
+    public function ProjectByUser($userId, string $projectId)
+    {
+
+    return $this->projectModel::where([
+        'id'=> $projectId,
+        'user_id' => $userId
+        ])->first();
+
+    }
+
+
+    /**
+     * ProjectByUserExists
+     *
+     * @param  mixed $userId
+     * @param  mixed $projectId
+     * @return object
+     */
+    public function ProjectByUserExists(string $userId, string $projectId)
+    {
+
+    return $this->projectModel::where([
+        'id'=> $projectId,
+        'user_id'=> $userId
+    ])->exists();
 
     }
 

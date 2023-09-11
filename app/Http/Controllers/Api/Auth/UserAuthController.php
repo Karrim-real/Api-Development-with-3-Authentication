@@ -89,8 +89,26 @@ class UserAuthController extends Controller
     public function UpdateProfile(UpdateUserRequest $request)
     {
         $data = $request->validated();
+        $user = auth()->user();
+        if( $this->userAuthService->UserByEmail(auth()->user()->email)){
+            $data['name'] = isset($data['name']) ? $data['name'] : $user->name;
+            $data['email'] = isset($data['email']) ? $data['email'] : $user->email;
+            if ($this->userAuthService->updateUser($user->id,$data)) {
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'User info Successfully',
+                    'data' => $this->userAuthService->profile($user->id)
+                ], 200);
 
-    return 'Update Profile Route';
+            }
+
+            return response()->json([
+                'status' => 0,
+                'message' => 'An error occurred while updating user data, Please try again later'
+            ], 502);
+        }
+        // return $data;
+
 
     }
 
@@ -104,7 +122,12 @@ class UserAuthController extends Controller
     public function logout()
     {
 
-    return 'Logout Route';
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'User Logged Out Successfully'
+        ]);
 
 
     }

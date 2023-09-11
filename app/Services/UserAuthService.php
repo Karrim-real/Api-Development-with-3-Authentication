@@ -48,6 +48,12 @@ class UserAuthService implements UserAuthInterface
         return Auth::attempt($userData);
     }
 
+    /**
+     * UserByEmail
+     *
+     * @param  mixed $email
+     * @return object
+     */
     public function UserByEmail($email)
     {
         return $this->userAuthModel::where('email', $email)->exists();
@@ -72,14 +78,15 @@ class UserAuthService implements UserAuthInterface
         return $this->userAuthModel::findOrFail($userId);
     }
 
+
     /**
-     * updateProfile
+     * updateUser
      *
      * @param  mixed $userId
      * @param  mixed $newData
      * @return void
      */
-    public function updateProfile($userId, $newData)
+    public function updateUser($userId, $newData)
     {
         return $this->userAuthModel::whereId($userId)->update($newData);
     }

@@ -41,13 +41,15 @@ interface UserAuthInterface
      * @return void
      */
     public function profile($userId);
+
     /**
-     * updateProfile
+     * updateUser
      *
      * @param  mixed $userId
+     * @param  mixed $newData
      * @return void
      */
-    public function updateProfile($userId, $newData);
+    public function updateUser($userId, $newData);
     /**
      * deleteUser
      *
