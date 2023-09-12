@@ -43,6 +43,7 @@
 <script src="{{asset('backend/assets/libs/feather-icons/feather.min.js')}}"></script>
 <script src="{{asset('backend/assets/js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
 <script src="{{asset('backend/assets/js/plugins.js')}}"></script>
+<script src="{{asset('backend/assets/js/libs/jquery.js')}}"></script>
 
 <!-- apexcharts -->
 <script src="{{asset('backend/assets/libs/apexcharts/apexcharts.min.js')}}"></script>
@@ -59,6 +60,7 @@
 
 <!-- App js -->
 <script src="{{asset('backend/assets/js/app.js')}}"></script>
+<script src="{{asset('backend/assets/js/custom.js')}}"></script>
 </body>
 
 </html>
