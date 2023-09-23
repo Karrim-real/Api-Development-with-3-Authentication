@@ -109,6 +109,6 @@ class UserAuthService implements UserAuthInterface
      */
     public function logout()
     {
-        return $this->userAuthModel::logout();
+        auth()->logout();
     }
 }

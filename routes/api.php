@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('v1')->group(function(){
-    Route::apiResource('employee', EmployeeController::class);
+    // Route::apiResource('employee', EmployeeController::class);
 
     Route::controller(UserAuthController::class)->group(function(){
 
@@ -42,7 +42,7 @@ Route::prefix('v1')->group(function(){
                     Route::get('logout', 'Logout');
                 });
 
-                    Route::apiResource('project', ProjectController::class);
+                    // Route::apiResource('project', ProjectController::class);
 
             });
 

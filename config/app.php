@@ -168,6 +168,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EmployeeServiceProvider::class,
         App\Providers\ProjectServiceProvider::class,
+        App\Providers\CardServiceProvider::class,
+        App\Providers\DenominationServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
