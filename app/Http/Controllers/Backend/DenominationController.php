@@ -91,9 +91,13 @@ class DenominationController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
+        // dd($id);
         if ($this->denominationService->deleteDenomination($id)) {
-            return redirect()->back()->with('warning', 'You have deleted denomination');
+            return response()->json([
+                'status' => 200,
+                'message' => 'Denomination deleted'
+            ]);
+            // return redirect()->back()->with('warning', 'You have deleted denomination');
         }
         return redirect()->back()->with('danger', 'No record Found');
     }

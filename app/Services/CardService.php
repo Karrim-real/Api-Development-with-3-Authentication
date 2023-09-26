@@ -26,7 +26,7 @@ class CardService implements CardInterface
 
     public function Cards()
     {
-        return $this->cardModel::all();
+        return $this->cardModel::simplePaginate(10);
     }
 
     /**
@@ -53,8 +53,10 @@ class CardService implements CardInterface
 
     public function checkIfCardExists(int $Card)
     {
+        return $this->cardModel::where('id', $Card)->exists();
+    }
 
-        return Card::where('id', $Card)->exists();
-
+    public function activeCards( int $status){
+        return $this->cardModel::where('status', $status)->get();
     }
 }

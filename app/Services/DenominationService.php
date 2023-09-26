@@ -53,8 +53,10 @@ class DenominationService implements DenominationInterface
 
     public function checkIfDenominationExists(int $Denomination)
     {
+        return $this->denominationModel::where('id', $Denomination)->exists();
+    }
 
-        return Denomination::where('id', $Denomination)->exists();
-
+    public function activeDenomination( int $status){
+        return $this->denominationModel::where('status', $status)->get();
     }
 }

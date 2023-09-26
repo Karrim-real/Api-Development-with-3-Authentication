@@ -35,13 +35,13 @@ class AdminAuthController extends Controller
 
 
    public function loginPost(StoreUserLoginRequest $request){
+    
         $data = $request->validated();
     // dd($data);
         if ($this->authService->login($data)) {
                 return redirect()->route('admin.dashboard')->with('success', 'Login Successful');
         }
-        return redirect()->back();
-
+        return redirect()->back()->with('error', 'Incorrect Email or Password!');
     }
     /**
      * register

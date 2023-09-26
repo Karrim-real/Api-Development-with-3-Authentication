@@ -61,6 +61,7 @@
 <!-- App js -->
 <script src="{{asset('backend/assets/js/app.js')}}"></script>
 <script src="{{asset('backend/assets/js/custom.js')}}"></script>
+@yield('script')
 </body>
 
 </html>

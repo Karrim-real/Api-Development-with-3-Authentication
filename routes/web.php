@@ -42,7 +42,10 @@ Route::middleware('auth')->group(function(){
     Route::prefix('admin')->group(function(){
         Route::resource('denomination', DenominationController::class);
         Route::get('denomination_delete/{id}', [DenominationController::class, 'destroy'])->name('denomination.delete');
+
         Route::resource('card', CardController::class);
+        Route::get('card_delete/{id}', [CardController::class, 'destroy'])->name('card.delete');
+        // Route::resource('card', CardController::class);
     });
 
 });

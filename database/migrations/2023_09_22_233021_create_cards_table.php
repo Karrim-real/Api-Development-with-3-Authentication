@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->integer('title');
             $table->string('code');
             $table->foreignId('denomination_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('status')->default(1);

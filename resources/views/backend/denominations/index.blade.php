@@ -80,7 +80,7 @@
                                                                 <a class="dropdown-item" href="{{route('denomination.show', $item->id)}}"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                                                 <a class="dropdown-item" href="{{route('denomination.edit', $item->id)}}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="{{route('denomination.delete', $item->id)}}" data-bs-toggle="modal" data-bs-target="#removeProjectModal"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Remove</a>
+                                                                <a class="dropdown-item" href="{{route('denomination.delete', $item->id)}}" data-bs-toggle="modal" data-bs-target="#removeProjectModal" id="deleteLink"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Remove</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -92,7 +92,7 @@
                                                         <span class="avatar-title bg-soft-warning rounded p-2">
                                                             <img src="{{asset('backend/assets/images/brands/slack.png')}}" alt="" class="img-fluid p-1">
                                                         </span>
-                                                    </div>
+                                                    </div>l
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h5 class="mb-1 fs-15"><a href="apps-projects-overview.html" class="text-dark">{{$item->title}}</a></h5>
@@ -189,6 +189,31 @@
             </div>
             <!-- End Page-content -->
 
+    <!-- removeProjectModal -->
+    <div id="removeProjectModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-2 text-center">
+                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                            <h4>Are you Sure ?</h4>
+                            <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Project ?</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                        <a type="button" class="btn w-sm btn-danger" href="" id="deleteBtn">Yes, Delete It!</a>
+                        {{-- <button type="button" class="btn w-sm btn-danger" id="remove-project"></button> --}}
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
             <footer class="footer border-top">
                 <div class="container-fluid">
                     <div class="row">
@@ -205,5 +230,31 @@
             </footer>
         </div>
         <!-- end main content-->
+@section('script')
+<script>
+    $(function(){
+        let linkId;
+       $('#deleteLink').click(function (e) {
+        e.preventDefault();
+        linkId = $(this).attr('href')
+        console.log(linkId);
+       });
 
+       $('#deleteBtn').click(function (e) {
+        e.preventDefault();
+        // linkId = $(this).attr('href')
+        console.log('clcik');
+        $.ajax({
+            type: "GET",
+            url: linkId,
+
+            success: function (response) {
+                console.log(response);
+                location.reload();
+            }
+        });
+       });
+    })
+</script>
+@endsection
 @endsection
