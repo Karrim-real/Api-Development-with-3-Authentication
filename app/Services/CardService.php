@@ -26,7 +26,7 @@ class CardService implements CardInterface
 
     public function Cards()
     {
-        return $this->cardModel::simplePaginate(10);
+        return $this->cardModel::latest()->simplePaginate(10);
     }
 
     /**
