@@ -96,13 +96,13 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h5 class="mb-1 fs-15"><a href="apps-projects-overview.html" class="text-dark">{{$item->title}}</a></h5>
-                                                    <p class="text-muted text-truncate-two-lines mb-3">#{{$item->denominations->amount}}</p>
+                                                    <p class="text-muted text-truncate-two-lines mb-3">&#8358;{{number_format($item->denominations->amount,2)}}</p>
                                                 </div>
                                             </div>
                                             <div class="mt-auto">
                                                 <div class="d-flex mb-2">
                                                     <div class="flex-grow-1">
-                                                        <div>GiftCards</div>
+                                                        <div>GiftCards Pin : <b>{{$item->code}}</b></div>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <div><i class="ri-list-check align-bottom me-1 text-muted"></i> <button class="btn {{$item->status == 1 ? 'btn-success' : 'btn-danger'}} btn-sm">{{($item->status ==  1 ? 'Available' : 'Sold')}}</button></div>

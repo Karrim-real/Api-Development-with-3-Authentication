@@ -45,7 +45,6 @@ Route::middleware('auth')->group(function(){
 
         Route::resource('card', CardController::class);
         Route::get('card_delete/{id}', [CardController::class, 'destroy'])->name('card.delete');
-        // Route::resource('card', CardController::class);
     });
 
 });

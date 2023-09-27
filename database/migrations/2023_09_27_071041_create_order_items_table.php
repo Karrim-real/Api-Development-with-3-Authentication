@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('code');
-            $table->foreignId('denomination_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('status')->default(1);
-            $table->boolean('redeem_status')->default(0);
+            $table->foreignId('card_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->longText('reference');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('order_items');
     }
 };

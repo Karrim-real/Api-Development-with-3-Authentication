@@ -38,8 +38,8 @@
                                     @include('errors.errormessages')
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="project-title-input">Quantity</label>
-                                        <input type="number" required  name="quantity" value="{{old('quantity')}}" class="form-control" id="Quantity" placeholder="Enter project title">
+                                        <label class="form-label" for="project-title-input">Buyer Email</label>
+                                        <input type="email" required  name="email" value="{{old('email')}}" class="form-control" id="buyerEmail" placeholder="Buyer Email E.g info@test.com">
                                     </div>
 
                                     <div class="md-3">
@@ -54,6 +54,10 @@
                                         </select>
                                     </div>
 
+                                    <div class="mb-3">
+                                        <label class="form-label" for="project-title-input">Quantity</label>
+                                        <input type="number" required  name="quantity" value="{{old('quantity')}}" class="form-control" id="Quantity" placeholder="Type Quantity, E.g 5">
+                                    </div>
 
                                 </div>
                                 <!-- end card body -->

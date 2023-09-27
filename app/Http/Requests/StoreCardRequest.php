@@ -22,6 +22,7 @@ class StoreCardRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'email' => 'required|email',
             'quantity' => 'required|integer',
             'status' => 'required',
             'denomination_id' => 'required|integer',

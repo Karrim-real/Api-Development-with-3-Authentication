@@ -7,17 +7,33 @@ use App\Http\Requests\StoreCardRequest;
 use App\Http\Requests\UpdateCardRequest;
 use App\Services\CardService;
 use App\Services\DenominationService;
+use App\Services\MailingService;
+use App\Services\OrderListService;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CardController extends Controller
 {
 
     protected $cardService;
     protected $denominationService;
+    protected $orderService;
+    protected $OrderItemService;
+    protected $mailingService;
 
-    public function __construct(CardService $cardService, DenominationService $denominationService) {
+    public function __construct(
+        CardService $cardService,
+        DenominationService $denominationService,
+        OrderService $orderService,
+        OrderListService $orderListService,
+        MailingService $mailingService
+        ) {
         $this->cardService = $cardService;
         $this->denominationService = $denominationService;
+        $this->orderService = $orderService;
+        $this->OrderItemService = $orderListService;
+        $this->mailingService = $mailingService;
     }
     /**
      * Display a listing of the resource.
@@ -47,12 +63,31 @@ class CardController extends Controller
     {
         $data = $request->validated();
         // dd($data['quantity']);
-        for($i = 1; $i < $data['quantity']; $i++){
+        $total_fee = 0;
+        $card_fee = $this->denominationService->Denomination($data['denomination_id'])->amount;
+        $total_fee = $data['quantity'] * $card_fee;
+        $order_reference = Str::orderedUuid();
+        for($i = 0; $i < $data['quantity']; $i++){
             $data['title'] = 'Nezer GiftCard';
             $data['code'] = rand(1, 1000000000000000);
-            $this->cardService->createCard($data);
+            $card = $this->cardService->createCard($data);
+            $orderList['card_id'] = $card->id;
+            $orderList['reference'] = $order_reference;
+            $this->OrderItemService->createOrderList($orderList);
         }
+        // return $order_reference;
+        $order['reference'] = $order_reference;
+        $order['buyer_email'] = $data['email'];
+        $order['quantity'] = $data['quantity'];
+        $order['total'] = $total_fee;
+        // $messages['']
+
+        if ($this->orderService->createOrder($order)) {
+            $this->mailingService->sendGiftCard($order['buyer_email'], $order);
             return redirect()->route('card.index')->with(['success' => 'GiftCard Created']);
+        }
+
+        return redirect()->route('card.index')->with(['error' => 'An error occurred']);
 
     }
 

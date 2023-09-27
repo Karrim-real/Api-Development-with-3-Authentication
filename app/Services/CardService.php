@@ -17,7 +17,7 @@ class CardService implements CardInterface
      * createCard
      *
      * @param  mixed $data
-     * @return void
+     * @return object
      */
     public function createCard(array $data)
     {
@@ -26,7 +26,7 @@ class CardService implements CardInterface
 
     public function Cards()
     {
-        return $this->cardModel::latest()->simplePaginate(10);
+        return $this->cardModel::latest()->simplePaginate(15);
     }
 
     /**
