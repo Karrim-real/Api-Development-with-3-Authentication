@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
@@ -22,8 +23,8 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orderItems(): HasMany
+    public function orderItems(): BelongsTo
     {
-        return $this->hasMany(OrderItem::class, 'reference');
+        return $this->belongsTo(OrderItem::class);
     }
 }

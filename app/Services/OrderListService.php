@@ -60,4 +60,8 @@ class OrderListService implements OrderListInterface
     public function activeOrderLists( int $status){
         return $this->OrderListModel::where('status', $status)->get();
     }
+
+    public function OrderListByReference($reference)  {
+        return $this->OrderListModel::where('reference', $reference)->get();
+    }
 }

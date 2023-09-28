@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Backend\CardController;
 use App\Http\Controllers\Backend\DenominationController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\OrderListController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +47,11 @@ Route::middleware('auth')->group(function(){
 
         Route::resource('card', CardController::class);
         Route::get('card_delete/{id}', [CardController::class, 'destroy'])->name('card.delete');
+
+        Route::resource('order', OrderController::class);
+
+        Route::resource('order-list', OrderListController::class);
+
     });
 
 });

@@ -67,6 +67,7 @@ class CardController extends Controller
         $card_fee = $this->denominationService->Denomination($data['denomination_id'])->amount;
         $total_fee = $data['quantity'] * $card_fee;
         $order_reference = Str::orderedUuid();
+        $cards = [];
         for($i = 0; $i < $data['quantity']; $i++){
             $data['title'] = 'Nezer GiftCard';
             $data['code'] = rand(1, 1000000000000000);
@@ -74,21 +75,22 @@ class CardController extends Controller
             $orderList['card_id'] = $card->id;
             $orderList['reference'] = $order_reference;
             $this->OrderItemService->createOrderList($orderList);
+            array_push($cards, $card);
         }
         // return $order_reference;
         $order['reference'] = $order_reference;
         $order['buyer_email'] = $data['email'];
         $order['quantity'] = $data['quantity'];
         $order['total'] = $total_fee;
+        $order['cards'] = $cards;
         // $messages['']
-
+        // dd($cards);
         if ($this->orderService->createOrder($order)) {
             $this->mailingService->sendGiftCard($order['buyer_email'], $order);
             return redirect()->route('card.index')->with(['success' => 'GiftCard Created']);
         }
 
         return redirect()->route('card.index')->with(['error' => 'An error occurred']);
-
     }
 
     /**

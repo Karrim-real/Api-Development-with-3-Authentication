@@ -52,12 +52,15 @@
                         </li> <!-- end Dashboard Menu -->
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="index.html#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
-                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Apps</span>
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Orders</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarApps">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="apps-calendar.html" class="nav-link" data-key="t-calendar"> Calendar </a>
+                                        <a href="{{route('order.index')}}" class="nav-link" data-key="t-calendar"> Orders</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('order-list.index')}}" class="nav-link" data-key="t-calendar"> Orders Items</a>
                                     </li>
 
                                 </ul>
