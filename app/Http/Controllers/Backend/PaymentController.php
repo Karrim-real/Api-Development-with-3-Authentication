@@ -19,9 +19,9 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = $this->paymentService->Payments();
-        $totalPayout = $this->paymentService->TotalPayouts(1);
+        // $totalPayout = $this->paymentService->TotalPayouts(1);
 
-        return view('backend.payments.index', compact('payments', 'totalPayout'));
+        return view('backend.payments.index', compact('payments'));
         //
     }
 
