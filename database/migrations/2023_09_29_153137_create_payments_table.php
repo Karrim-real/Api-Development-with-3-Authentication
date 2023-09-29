@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('card_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('hash');
+            $table->integer('amount_paid');
+            $table->string('reference');
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->string('bank_type');
+            $table->integer('status')->default(0);
+
             $table->timestamps();
         });
     }

@@ -59,4 +59,8 @@ class PaymentService implements PaymentInterface
     public function activePayments( int $status){
         return $this->PaymentModel::where('status', $status)->get();
     }
+
+    public function TotalPayouts($status){
+        return $this->PaymentModel::where('status', $status)->sum('amount_paid');
+    }
 }

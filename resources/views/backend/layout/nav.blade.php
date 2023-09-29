@@ -74,7 +74,7 @@
                             <div class="collapse menu-dropdown" id="sidebarLayouts">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{route('payment.index')}}" target="_blank" class="nav-link" data-key="t-horizontal">User Payout</a>
+                                        <a href="{{route('payment.index')}}" class="nav-link" data-key="t-horizontal">User Payout</a>
                                     </li>
 
                                 </ul>

@@ -35,19 +35,19 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <p class="text-uppercase fw-medium text-muted mb-0">Invoices Sent</p>
+                                        <p class="text-uppercase fw-medium text-muted mb-0">Payments Sent</p>
                                     </div>
                                     <div class="flex-shrink-0">
                                         <h5 class="text-success fs-14 mb-0">
-                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i> {{count($NumberOfOrders)/100}} %
+                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i> {{$totalPayout / 100}} %
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
                                         <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
-                                                data-target="{{count($NumberOfOrders)}}">0</span></h4>
-                                        <span class="badge bg-warning me-1">{{count($NumberOfOrders)}}</span> <span class="text-muted">Invoices
+                                                data-target="{{$totalPayout}}">0</span></h4>
+                                        <span class="badge bg-warning me-1">{{$totalPayout}}</span> <span class="text-muted">Payments
                                             sent</span>
                                     </div>
                                     <div class="avatar-sm flex-shrink-0">
@@ -278,14 +278,16 @@
                                                 </tr>
 
                                                 @empty
-                                                    No Data Available
+                                                   <div class="alert alert-danger">
+                                                        <h4>No Data Available</h4>
+                                                    </div>
                                                 @endforelse
                                             </tbody>
                                         </table>
                                        <br>
                                     <div class="d-flex justify-content-end mt-3">
                                         <div class="pagination-wrap hstack gap-2">
-                                           {{$orders->links()}}
+                                           {{-- {{$orders->links()}} --}}
                                         </div>
                                     </div>
                                     <br>
