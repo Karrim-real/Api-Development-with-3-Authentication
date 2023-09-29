@@ -69,12 +69,12 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="index.html#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Layouts</span> <span class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Payments</span> <span class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarLayouts">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="layouts-horizontal.html" target="_blank" class="nav-link" data-key="t-horizontal">Horizontal</a>
+                                        <a href="{{route('payment.index')}}" target="_blank" class="nav-link" data-key="t-horizontal">User Payout</a>
                                     </li>
 
                                 </ul>
