@@ -22,8 +22,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = $this->orderService->Orders();
+        $NumberOfOrders = $this->orderService->countOrders();
 
-        return view('backend.orders.index', compact('orders'));
+        return view('backend.orders.index', compact('orders', 'NumberOfOrders'));
         //
     }
 

@@ -4,15 +4,22 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserLoginRequest;
+use App\Services\OrderListService;
+use App\Services\OrderService;
 use App\Services\UserAuthService;
 use Illuminate\Http\Request;
 
 class AdminAuthController extends Controller
 {
+
+    protected $orderService;
+    protected $orderListService;
     protected $authService;
 
-    public function __construct(UserAuthService $userAuthService) {
+    public function __construct(UserAuthService $userAuthService, OrderService $orderService, OrderListService $orderListService) {
         $this->authService = $userAuthService;
+        $this->orderService = $orderService;
+        $this->orderListService = $orderListService;
     }
 
     /**
@@ -35,7 +42,7 @@ class AdminAuthController extends Controller
 
 
    public function loginPost(StoreUserLoginRequest $request){
-    
+
         $data = $request->validated();
     // dd($data);
         if ($this->authService->login($data)) {
@@ -60,7 +67,10 @@ class AdminAuthController extends Controller
      */
     public function Dashboard()
     {
-        return view('backend.dashboard');
+        $orders = $this->orderService->RecentFiveOrders();
+        $orderLists = $this->orderListService->OrderLists();
+        $TopOrders =  $this->orderService->TopOrders();
+        return view('backend.dashboard', compact('orders','orderLists', 'TopOrders'));
     }
 
     /**

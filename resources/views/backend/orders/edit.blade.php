@@ -75,7 +75,7 @@
                                                 <!--end col-->
                                                 <div class="col-lg-3 col-6">
                                                     <p class="text-muted mb-2 text-uppercase fw-semibold">Total Amount</p>
-                                                    <h5 class="fs-14 mb-0">#<span id="total-amount">{{number_format($order->total,2)}}</span></h5>
+                                                    <h5 class="fs-14 mb-0">#<span id="total-amount">&#8358;{{number_format($order->total,2)}}</span></h5>
                                                 </div>
                                                 <!--end col-->
                                             </div>
@@ -114,7 +114,7 @@
                                                         <tr class="table-active">
                                                             <th scope="col" style="width: 50px;">#</th>
                                                             <th scope="col">Product Name</th>
-                                                            <th scope="col">Denomination (#)</th>
+                                                            <th scope="col">Denomination (&#8358;)</th>
                                                             <th scope="col">Card Pin</th>
                                                             <th scope="col" class="text-end">Amount (#)</th>
                                                         </tr>
@@ -126,12 +126,12 @@
                                                             <td class="text-start">
                                                                 <span class="fw-medium">{{$item->cards->denominations->title}}</span>
                                                             </td>
-                                                            <td>{{number_format($item->cards->denominations->amount,2)}}</td>
+                                                            <td>&#8358;{{number_format($item->cards->denominations->amount,2)}}</td>
                                                             <td><span class="fw-bold">{{$item->cards->code}}</span></td>
-                                                            <td class="text-end">{{number_format($item->cards->denominations->amount,2)}}</td>
+                                                            <td class="text-end">&#8358;{{number_format($item->cards->denominations->amount,2)}}</td>
                                                         </tr>
                                                         @empty
-
+                                                        No Card Available
                                                         @endforelse
 
                                                     </tbody>
@@ -142,7 +142,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>Denomination</td>
-                                                            <td class="text-end">{{number_format($item->cards->denominations->amount,2)}}</td>
+                                                            <td class="text-end">&#8358;{{number_format($item->cards->denominations->amount,2)}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Quantity</td>
@@ -150,11 +150,11 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Vat Charge</td>
-                                                            <td class="text-end">#0.00</td>
+                                                            <td class="text-end">&#8358;0.00</td>
                                                         </tr>
                                                         <tr class="border-top border-top-dashed fs-15">
                                                             <th scope="row">Total Amount</th>
-                                                            <th class="text-end">#{{number_format($order->total, 2)}}</th>
+                                                            <th class="text-end">&#8358;{{number_format($order->total, 2)}}</th>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -166,9 +166,9 @@
                                                 <p class="text-muted mb-1">Account Name: <span class="fw-medium" id="card-holder-name">{{config('app.name')}}</span></p>
                                                 <p class="text-muted mb-1">Account Number: <span class="fw-medium" id="card-number">8131915690</span></p>
                                                 <p class="text-muted mb-1">Bank Type: <span class="fw-medium" id="card-number">Opay</span></p>
-                                                <p class="text-muted">Total Amount: <span class="fw-medium" id="">$ </span><span id="card-total-amount">{{number_format($order->total,2)}}</span></p>
+                                                <p class="text-muted">Total Amount: <span class="fw-medium" id="">&#8358;</span><span class="fw-bold" id="card-total-amount">{{number_format($order->total,2)}}</span></p>
                                             </div>
-                                            <div class="mt-4">
+                                            {{-- <div class="mt-4">
                                                 <div class="alert alert-primary">
                                                     <p class="mb-0"><span class="fw-semibold">NOTES:</span>
                                                         <span id="note">All accounts are to be paid within 7 days from receipt of invoice. To be paid by cheque or
@@ -178,7 +178,7 @@
                                                         </span>
                                                     </p>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="hstack gap-2 justify-content-end d-print-none mt-4">
                                                 <a href="javascript:window.print()" class="btn btn-soft-primary"><i class="ri-printer-line align-bottom me-1"></i> Print</a>
                                                 <a href="" download="{{$order->reference}}" class="btn btn-primary"><i class="ri-download-2-line align-bottom me-1"></i> Download</a>

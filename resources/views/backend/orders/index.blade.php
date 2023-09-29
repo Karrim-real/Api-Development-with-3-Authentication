@@ -39,15 +39,15 @@
                                     </div>
                                     <div class="flex-shrink-0">
                                         <h5 class="text-success fs-14 mb-0">
-                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +89.24 %
+                                            <i class="ri-arrow-right-up-line fs-13 align-middle"></i> {{count($NumberOfOrders)/100}} %
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value"
-                                                data-target="559.25">0</span>k</h4>
-                                        <span class="badge bg-warning me-1">2,258</span> <span class="text-muted">Invoices
+                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
+                                                data-target="{{count($NumberOfOrders)}}">0</span></h4>
+                                        <span class="badge bg-warning me-1">{{count($NumberOfOrders)}}</span> <span class="text-muted">Invoices
                                             sent</span>
                                     </div>
                                     <div class="avatar-sm flex-shrink-0">
@@ -164,7 +164,7 @@
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-danger" id="remove-actions"
                                                 onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                            <a href="apps-invoices-create.html" class="btn btn-primary"><i
+                                            <a href="{{route('card.create')}}" class="btn btn-primary"><i
                                                     class="ri-add-line align-bottom me-1"></i> Create Invoice</a>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                                     <th class="sort text-uppercase" data-sort="date">Date</th>
                                                     <th class="sort text-uppercase" data-sort="invoice_amount">Quantity</th>
                                                     {{-- <th class="sort text-uppercase" data-sort="invoice_amount">Denomination</th> --}}
-                                                    <th class="sort text-uppercase" data-sort="invoice_amount">Total Amount</th>
+                                                    <th class="sort text-uppercase" data-sort="invoice_amount">Total Amount (&#8358;)</th>
                                                     <th class="sort text-uppercase" data-sort="status">Payment Status</th>
                                                     <th class="sort text-uppercase" data-sort="action">Action</th>
                                                 </tr>
@@ -234,14 +234,14 @@
 
                                                 <tr>
 
-                                                    <td class="id"><a href="" class="fw-medium link-primary">{{$item->reference}}</a>
+                                                    <td class="id"><a href="{{route('order.show', $item->id)}}" class="fw-medium link-primary">{{$item->reference}}</a>
                                                     </td>
 
                                                     <td class="email">{{$item->buyer_email}}</td>
-                                                    <td class="date">{{$item->created_at->diffForHumans()}}</td>
+                                                    <td class="date">{{$item->created_at->format('d, M, Y')}}</td>
                                                     <td class="invoice_amount">{{$item->quantity}}</td>
                                                     {{-- <td class="invoice_amount">{{$item->orderItems}}</td> --}}
-                                                    <td class="invoice_amount">{{$item->total}}</td>
+                                                    <td class="invoice_amount">&#8358;{{number_format($item->total,2)}}</td>
                                                     <td class="status"><span
                                                             class="badge badge-soft-success
                                                         text-uppercase">
@@ -261,7 +261,7 @@
                                                                             class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                                         View</a></li>
                                                                 <li><a type="button" class="dropdown-item" type="link"
-                                                                        href="{{$item->reference}}"><i
+                                                                        href="{{$item->id}}"><i
                                                                             class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                                         Edit</a></li>
 
@@ -283,19 +283,13 @@
                                             </tbody>
                                         </table>
                                        <br>
-                                       <br>
-                                       <br>
                                     <div class="d-flex justify-content-end mt-3">
                                         <div class="pagination-wrap hstack gap-2">
-                                            <a class="page-item pagination-prev disabled" href="apps-invoices-list.html#">
-                                                Previous
-                                            </a>
-                                            <ul class="pagination listjs-pagination mb-0"></ul>
-                                            <a class="page-item pagination-next" href="apps-invoices-list.html#">
-                                                Next
-                                            </a>
+                                           {{$orders->links()}}
                                         </div>
                                     </div>
+                                    <br>
+
                                 </div>
 
                                 <!-- Modal -->

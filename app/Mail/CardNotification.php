@@ -13,7 +13,7 @@ class CardNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $message;
+    public array $message;
     /**
      * Create a new message instance.
      */
@@ -28,7 +28,7 @@ class CardNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Card Notification',
+            subject: $this->message['subject'],
         );
     }
 

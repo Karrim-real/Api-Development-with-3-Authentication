@@ -59,4 +59,16 @@ class OrderService implements OrderInterface
     public function activeOrders( int $status){
         return $this->OrderModel::where('status', $status)->get();
     }
+
+    public function countOrders(){
+        return $this->OrderModel::all();
+    }
+
+    public function RecentFiveOrders() {
+        return $this->OrderModel::latest()->take(5)->get();
+    }
+
+    public function TopOrders() {
+        return $this->OrderModel::orderBy('total', 'desc')->take(5)->get();
+    }
 }

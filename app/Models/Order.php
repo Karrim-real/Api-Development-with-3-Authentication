@@ -25,6 +25,6 @@ class Order extends Model
      */
     public function orderItems(): BelongsTo
     {
-        return $this->belongsTo(OrderItem::class);
+        return $this->belongsTo(OrderItem::class, 'reference');
     }
 }
