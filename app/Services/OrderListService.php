@@ -42,25 +42,56 @@ class OrderListService implements OrderListInterface
         return $this->OrderListModel::findOrFail($OrderListId);
     }
 
+    /**
+     * updateOrderList
+     *
+     * @param  mixed $OrderListId
+     * @param  mixed $data
+     * @return void
+     */
     public function updateOrderList(int $OrderListId, array $data)
     {
         return $this->OrderListModel::whereId($OrderListId)->update($data);
     }
 
+    /**
+     * deleteOrderList
+     *
+     * @param  mixed $OrderListId
+     * @return void
+     */
     public function deleteOrderList(int $OrderListId)
     {
         return $this->OrderListModel::destroy($OrderListId);
     }
 
+    /**
+     * checkIfOrderListExists
+     *
+     * @param  mixed $OrderList
+     * @return void
+     */
     public function checkIfOrderListExists(int $OrderList)
     {
         return $this->OrderListModel::where('id', $OrderList)->exists();
     }
 
+    /**
+     * activeOrderLists
+     *
+     * @param  mixed $status
+     * @return void
+     */
     public function activeOrderLists( int $status){
         return $this->OrderListModel::where('status', $status)->get();
     }
 
+    /**
+     * OrderListByReference
+     *
+     * @param  mixed $reference
+     * @return void
+     */
     public function OrderListByReference($reference)  {
         return $this->OrderListModel::where('reference', $reference)->get();
     }

@@ -19,6 +19,7 @@ class EmployeeService implements EmployeeInterface
      * @param  mixed $data
      * @return void
      */
+
     public function createEmployee(array $data)
     {
         return $this->employeeModel::create($data);
