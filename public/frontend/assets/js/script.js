@@ -1,7 +1,35 @@
 $(function(){
 
+
+
     $("#CardPost").submit(function (e) {
         e.preventDefault();
+    });
+
+    let pinCode;
+    $('#enterPin').keyup(function (e) {
+        e.preventDefault();
+        pinCode = $(this).val();
+        if (pinCode == '' || isNaN(pinCode)) {
+
+            Swal.fire({
+                title: 'Invalid Input',
+                text: "Input Field must not Empty and Must be a number",
+                icon: 'warning',
+              })
+              $(this).val('');
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "/verify-card-pin",
+                data: {'cardPin': pinCode},
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+            console.log(pinCode);
+        }
     });
 
     $("#CardBtn").on('click', function (e) {

@@ -9,8 +9,14 @@
         <div class="mt-5 mb-2">
         <label for="" class="title">Enter Pin</label>
         <input type="text" id="enterPin" class="form-control mb-1 p-2" placeholder="Type here">
-        <div id="update" name="accountUpdate">Account Update  </div>
+        {{-- <div id="update" name="accountUpdate">Account Update  </div> --}}
+        <br>
+        <button class="withdraw-btn px-3 py-2 rounded " id="CardVerify">
+            VERIFY
+        </button>
         </div>
+
+        <br>
 
         <div class="mb-3">
             <label for="" class="title">Select Bank</label>
@@ -51,4 +57,8 @@
         </div>
     </div>
 </div>
+@section('script')
+{{-- <script src="{{asset('frontend/assets/js/PaymentHandler.js')}}"></script> --}}
+
+
 @endsection

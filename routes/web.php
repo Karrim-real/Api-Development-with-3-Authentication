@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\OrderListController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PaymentController as FrontendPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/transaction/{reference}', 'TransactionStatus')->name('transactionstatus');
+    Route::get('/verify-cardpin', '')->name('verify.card_pin');
+});
+
+Route::controller(FrontendPaymentController::class)->group(function () {
+
+    Route::get('/verify-card-pin', '')->name('verify.card_pin');
 });
 
 

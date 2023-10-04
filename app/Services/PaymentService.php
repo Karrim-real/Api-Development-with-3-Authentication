@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Interfaces\PaymentInterface;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Http;
+
 
 class PaymentService implements PaymentInterface
 {
@@ -94,4 +96,39 @@ class PaymentService implements PaymentInterface
     public function TotalPayouts($status){
         return $this->PaymentModel::where('status', $status)->sum('amount_paid');
     }
+
+    /**
+     * getPayStackPayment
+     *
+     * @param  mixed $url
+     * @return void
+     */
+    public function getPayStackPayment(string $url)
+    {
+        try {
+            return Http::withToken(config('paystack.paystack_secret_key'))->get($url)->json();
+
+        } catch (\Throwable $th) {
+            logger(['Initialize PayStack error' => $th->getMessage()]);
+        }
+    }
+
+    /**
+     * postPayStackPayment
+     *
+     * @param  mixed $url
+     * @param  mixed $data
+     * @return void
+     */
+    public function postPayStackPayment(string $url, array $data)
+    {
+        try {
+            return Http::withToken(config('paystack.paystack_secret_key'))->post($url, $data)->json();
+
+        } catch (\Throwable $th) {
+            logger(['Initialize PayStack error' => $th->getMessage()]);
+        }
+    }
+
+
 }

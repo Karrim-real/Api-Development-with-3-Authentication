@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('account_number');
             $table->string('bank_type');
             $table->integer('status')->default(0);
+            $table->integer('tranx_status')->default(0);
 
             $table->timestamps();
         });

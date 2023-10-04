@@ -47,5 +47,21 @@ interface PaymentInterface
      */
     public function checkIfPaymentExists(int $PaymentId);
 
+    /**
+     * getPayStackPayment
+     *
+     * @param  mixed $url
+     * @return void
+     */
+    public function getPayStackPayment( string $url);
+
+    /**
+     * postPayStack
+     *
+     * @param  mixed $url
+     * @param  mixed $data
+     * @return void
+     */
+    public function postPayStackPayment(string $url, array $data);
 
 }

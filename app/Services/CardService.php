@@ -100,4 +100,15 @@ class CardService implements CardInterface
     public function activeCards( int $status){
         return $this->cardModel::where('status', $status)->get();
     }
+
+    /**
+     * CardByPin
+     *
+     * @param  mixed $pin
+     * @return void
+     */
+    public function CardByPin(int $pin){
+        return $this->cardModel::where('code', $pin)->first();
+    }
+    
 }

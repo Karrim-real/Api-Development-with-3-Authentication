@@ -21,6 +21,7 @@ class Payment extends Model
         'account_name',
         'account_number',
         'bank_type',
+        'tranx_status'
     ];
 
     /**

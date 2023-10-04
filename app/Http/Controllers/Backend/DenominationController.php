@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDenominationRequest;
 use App\Http\Requests\UpdateDenominationRequest;
+use App\Jobs\CardCreationJob;
 use App\Services\DenominationService;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class DenominationController extends Controller
     public function index()
     {
         $denominations = $this->denominationService->Denominations();
+
         return view('backend.denominations.index', compact('denominations'));
     }
 
@@ -40,6 +42,8 @@ class DenominationController extends Controller
     {
         $data = $request->validated();
         if ($this->denominationService->createDenomination($data)) {
+        CardCreationJob::dispatch();
+
             return redirect()->route('denomination.index')->with('success', 'You have created a denomination, Thanks.');
         }
         return redirect()->back()->with('error', 'An Error Occurred while creating denomination, Try Again');

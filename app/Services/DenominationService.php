@@ -44,7 +44,7 @@ class DenominationService implements DenominationInterface
      * Denomination
      *
      * @param  mixed $DenominationId
-     * @return void
+     * @return object
      */
     public function Denomination(int $DenominationId)
     {

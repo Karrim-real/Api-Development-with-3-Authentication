@@ -3,10 +3,41 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\CardService;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    protected $cardService;
+
+    public function __construct(CardService $cardService)
+    {
+        $this->cardService = $cardService;
+    }
+
+
+    public function getCardByPin(Request $request)
+    {
+
+        $cardPin = $request->cardPin;
+        return strlen($cardPin);
+        if ($request->ajax()) {
+
+            if (strlen($cardPin) > 15) {
+                # code...
+            }
+            if ($this->cardService->CardByPin($cardPin)) {
+                $cardInfo = $this->cardService->CardByPin($cardPin);
+                return $cardInfo;
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'title' => 'Something went wrong',
+                'body' => 'Card Not Found, Please check pin and try again'
+            ]);
+        }
+    }
     /**
      * Display a listing of the resource.
      */
