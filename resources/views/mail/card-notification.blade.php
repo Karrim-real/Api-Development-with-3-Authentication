@@ -1405,12 +1405,14 @@
 </head>
 
 <body>
+    
 
     <div class="card-category-1">
         @foreach ($message['cards'] as $item)
         <div class="basic-card basic-card-aqua">
             <div class="card-content">
-                <span class="card-title">{{config('app.name')}}</span>
+                <span class="card-title">{{config('app.name')}}</span><br>
+                <b>Card Number: <span class="card-title">{{$loop->index}}</span><b>
                 <h4>&#8358;{{number_format($item->cards->denominations->amount,2)}}</h4>
                 <p class="card-text">
                    Pin: {{$item->cards->code}}
